@@ -10,6 +10,10 @@ using UnityEngine.Rendering.PostProcessing;
 /// </summary>
 public class TronMode : MonoBehaviour
 {
+    [Header("Regular Ambient")]
+    [SerializeField] private Color regularAmbientColor = new Color(0.5f, 0.5f, 0.55f, 1f);
+    [SerializeField] private float regularAmbientIntensity = 1.0f;
+
     [Header("Skybox")]
     [SerializeField] private Color skyboxColor = new Color(10f / 255f, 22f / 255f, 46f / 255f, 1f);
     [SerializeField] private float tronAmbientIntensity = 0.07f;
@@ -94,6 +98,11 @@ public class TronMode : MonoBehaviour
 
     void Start()
     {
+        // Set regular ambient lighting on scene load
+        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+        RenderSettings.ambientLight = regularAmbientColor;
+        RenderSettings.ambientIntensity = regularAmbientIntensity;
+
         // Find the sun (first directional light)
         Light[] lights = FindObjectsOfType<Light>();
         foreach (Light light in lights)
