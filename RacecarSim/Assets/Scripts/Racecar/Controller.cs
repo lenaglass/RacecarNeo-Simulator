@@ -1,7 +1,4 @@
-﻿// Define operating system here (WINDOWS, MAC, or LINUX)
-#define WINDOWS
-
-using System;
+﻿using System;
 using UnityEngine;
 
 /// <summary>
@@ -49,7 +46,7 @@ public static class Controller
         new KeyCode[] { KeyCode.LeftArrow, KeyCode.RightArrow, KeyCode.DownArrow, KeyCode.UpArrow },
     };
 
-#if WINDOWS
+#if UNITY_STANDALONE_WIN
     /// <summary>
     /// The Unity button name corresponding to each Xbox button in Button.
     /// </summary>
@@ -84,33 +81,34 @@ public static class Controller
         new string[] { "X axis", "Y axis" },
         new string[] { "4th axis", "5th axis" }
     };
-#elif MAC
+#elif UNITY_STANDALONE_OSX
+    // PS5 DualSense on macOS (Apple Game Controller framework)
     private static readonly string[] buttonMap =
     {
-        "button 16", // A
-        "button 17", // B
-        "button 18", // X
-        "button 19", // Y
-        "button 13", // LB
-        "button 14", // RB
-        "button 11", // LJOY
-        "button 12", // RJOY
-        "button 9", // START
-        "button 10" // BACK
+        "button 1",  // A  → Cross
+        "button 2",  // B  → Circle
+        "button 0",  // X  → Square
+        "button 3",  // Y  → Triangle
+        "button 4",  // LB → L1
+        "button 5",  // RB → R1
+        "button 10", // LJOY → L3
+        "button 11", // RJOY → R3
+        "button 9",  // START → Options
+        "button 8"   // BACK → Create
     };
 
     private static readonly string[] triggerMap =
     {
-        "5th axis",
-        "6th axis"
+        "5th axis",  // LEFT trigger → L2
+        "6th axis"   // RIGHT trigger → R2
     };
 
     private static readonly string[][] joystickMap =
     {
-        new string[] { "X axis", "Y axis" },
-        new string[] { "3rd axis", "4th axis" }
+        new string[] { "X axis", "Y axis" },      // LEFT stick (throttle on Y)
+        new string[] { "3rd axis", "4th axis" }    // RIGHT stick (steering on X)
     };
-#elif LINUX
+#elif UNITY_STANDALONE_LINUX
     private static readonly string[] buttonMap =
     {
         "button 0", // A

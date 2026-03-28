@@ -23,7 +23,7 @@ public class Drive : RacecarModule
     /// <summary>
     /// The default value of MaxSpeed.
     /// </summary>
-    public const float DefaultMaxSpeed = 0.25f;
+    public const float DefaultMaxSpeed = 1f;
 
     /// <summary>
     /// The scale factor applied to the Speed input provided by the user.
@@ -127,11 +127,11 @@ public class Drive : RacecarModule
         this.WheelColliders[(int)WheelPosition.FrontRight].steerAngle = driveAngle;
 
         // Update position and rotation of wheel models to match wheel colliders
-        foreach(WheelPosition wheelPosition in Enum.GetValues(typeof(WheelPosition)))
+        foreach (WheelPosition wheelPosition in Enum.GetValues(typeof(WheelPosition)))
         {
             this.WheelColliders[(int)wheelPosition].GetWorldPose(out Vector3 position, out Quaternion rotation);
             this.Wheels[(int)wheelPosition].transform.rotation = rotation;
-            this.Wheels[(int)wheelPosition].transform.position = (int)wheelPosition % 2 == 0 
+            this.Wheels[(int)wheelPosition].transform.position = (int)wheelPosition % 2 == 0
                 ? position + this.Wheels[(int)wheelPosition].transform.right * Drive.wheelOffset
                 : position - this.Wheels[(int)wheelPosition].transform.right * Drive.wheelOffset;
         }
