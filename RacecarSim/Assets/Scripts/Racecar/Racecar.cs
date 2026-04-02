@@ -151,7 +151,7 @@ public class Racecar : MonoBehaviour
             foreach (string hidElement in hideHudElements) ToggleHudElement(hidElement);
         }
 
-        if (Controller.WasPressed(Controller.Button.X))  // square-button on PS5
+        if (Controller.WasPressed(Controller.Button.X))
         {
             TronMode tron = GetComponent<TronMode>();
             if (tron != null) tron.Toggle();
